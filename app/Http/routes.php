@@ -55,55 +55,77 @@ Route::group(['middleware' => ['web']], function () {
         return user_ins()->reset_password();
     });
 
+    //验证找回密码
+    Route::any('api/user/validate_reset_password', function () {
+        return user_ins()->validate_reset_password();
+    });
+
+    //查看会员
+    Route::any('api/user/read', function () {
+        return user_ins()->read();
+    });
+
     //是否已经登录
     Route::any('api/is_logged_in', function () {
         dd(user_ins()->is_logged_in());
     });
 
+    //添加问题api
     Route::any('api/question/add', function () {
         return question_ins()->add();
     });
 
+    //更改问题api
     Route::any('api/question/change', function () {
         return question_ins()->change();
     });
 
+    //查看问题api
     Route::any('api/question/read', function () {
         return question_ins()->read();
     });
 
+    //删除问题api
     Route::any('api/question/remove', function () {
         return question_ins()->remove();
     });
 
+    //添加回答api
     Route::any('api/answer/add', function () {
         return answer_ins()->add();
     });
 
+    //更改回答api
     Route::any('api/answer/change', function () {
         return answer_ins()->change();
     });
 
+    //查看回答api
     Route::any('api/answer/read', function () {
         return answer_ins()->read();
     });
 
+    //回答投票api
     Route::any('api/answer/vote', function () {
         return answer_ins()->vote();
     });
 
+    //添加评论api
     Route::any('api/comment/add', function () {
         return comment_ins()->add();
     });
 
+    //查看评论api
     Route::any('api/comment/read', function () {
         return comment_ins()->read();
     });
 
+    //删除评论api
     Route::any('api/comment/remove', function () {
         return comment_ins()->remove();
     });
 
+    //问题答案时间线api
     Route::any('api/timeline','CommonController@timeline');
 });
 
@@ -147,10 +169,10 @@ Route::group(['middleware' => ['web']], function () {
         return ['status'=>0,'msg'=>$msg];
     }
 
-    function suc($data_to_merge=null){
-        $data= ['status'=>1];
+    function suc($data_to_merge=[]){
+        $data= ['status'=>1,'data'=>[]];
         if($data_to_merge)
-            $data=array_merge($data,$data_to_merge);
+            $data['data']=array_merge($data['data'],$data_to_merge);
         return $data;
     }
 

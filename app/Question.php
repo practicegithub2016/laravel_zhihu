@@ -97,6 +97,7 @@ class Question extends Model
 
         /*检查是否有id*/
         if (!rq('id'))
+            suc(['msg'=>'id request']);
            // return ['status' => 0, 'msg' => 'id request'];
 
         /*根据id获取question model*/
