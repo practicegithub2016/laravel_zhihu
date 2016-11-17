@@ -21,9 +21,9 @@ class CreateTableComments extends Migration
             $table->unsignedInteger('reply_to')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('question_id')->references('id')->on('question');
-            $table->foreign('answer_id')->references('id')->on('answer');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('answer_id')->references('id')->on('answers');
             $table->foreign('reply_to')->references('id')->on('comments');
 
         });

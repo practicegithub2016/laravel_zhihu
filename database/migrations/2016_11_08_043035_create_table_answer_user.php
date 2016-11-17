@@ -19,8 +19,8 @@ class CreateTableAnswerUser extends Migration
             $table->unsignedSmallInteger('vote');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('answer_id')->references('id')->on('answer');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('answer_id')->references('id')->on('answers');
             $table->unique(['user_id','answer_id','vote']);
         });
     }
